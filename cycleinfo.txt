@@ -1,0 +1,399 @@
+
+─────────────────────────────────────────────
+=== An Introduction to Trading Cycles (Camel Finance) ===
+
+An Introduction to Trading Cycles
+By Camel Finance
+
+YouTube: @camelfinance
+X: @finance_camel
+
+Camel Finance ©
+
+Foreword
+
+Cycles are observable everywhere in life. They seem to be part of the code of the universe, laws that are immutable. The reasons cycles show up in financial markets are unclear, but not only are cycles observable in financial markets, cycles are tradable too.
+
+Theories for why cycles exist in trading instruments range from the idea cycles are driven by options and futures contracts expiries; to human emotions or even that cycles in financial markets are driven by moon cycles and astrology.
+
+I have never been able to find a statistically significant explanation for the cycles, but I have seen and traded enough of them to be certain they provide an edge in the markets.
+
+In financial markets, cycles are measured low to low and a fractalisation is observable across multiple timeframes. Daily cycles exist within weekly cycles and weekly cycles exist within larger, yearly cycles. I like to think about this fractalisation as chaining smaller cycles together to form the next size up.
+
+For example, if we chain together 3 – 5 daily cycles, we will find a weekly cycle (observable on the weekly time frame). And by chaining together multiple weekly cycles, we can observe a yearly (or multiyear) cycle.
+
+Yearly cycle lows provide excellent opportunity for longer term, core allocations to be acquired. Investors may also utilize yearly cycle lows to carry out major portfolio rebalancing. Meanwhile, weekly cycles provide excellent medium term (multi week) swing trades and provide a critical context within which, swing trades can be made on the daily timeframe. Daily cycles are excellent for shorter term swing trades. They can also be used confirm the strength of a yearly or weekly cycle, or indeed, flash warning signs of underlying weakness within the larger, weekly or yearly cycles.
+
+─────────────────────────────────────────────
+
+Cycle Failure
+
+In cycle trading, a ‘Failed Cycle’ is defined as a cycle in which price closes below the prior cycle low. Cycle failures are significant as they as they tell us to expect the cycle to continue to decline and to expect a lower low relative to the prior cycle low. This could be useful as an early warning sign if we are in a strong uptrend. Or conversely, during a bear market, we should expect multiple failed cycles during the formation of a downtrend.
+
+It is important to note, cycle lows form inside the specified timing windows approximately 70 to 80% of the time (depending on the asset), with approximately 20 to 30% of cycle lows forming outside of the specified timing windows. If a cycle low falls outside of the timing window, this does not mean the cycle has failed, nor should it be interpreted as a broken trading system. Markets are subject to randomness and at times, even chaos. Cycle lows that form outside the expected timing window are simply a reflection of this randomness. Knowing the majority of cycles fall inside the expected timing window provides an edge over the markets, especially over the long term with many repetitions applied.
+
+─────────────────────────────────────────────
+
+Cycle Terms
+
+Timing Window
+The time range in which we can expect key pivots points (cycle lows) to occur. The timing range is specific to each instrument and is derived on an individual basis from the entire price history of the asset. As previously stated, cycle lows form inside the specified timing windows approximately 70 to 80% of the time. By saying any given instrument forms a daily cycle low between 36 – 44 days, we are saying that a Cycle Low occurs within that timing window approximately 70 to 80% of the time. The remaining lows can form earlier or later than the timing window.
+
+Daily Cycle
+The daily cycle is the shortest cycle that I personally track. The daily cycle is measured in days and observed on the daily timeframe chart. As with all cycles, the cycle is measured low to low. It is of note; the fractalisation seen in cycles occurs in both directions and thus, shorter timeframe cycles are also observable, should one choose to track them.
+
+Daily Cycle Low (DCL)
+The lowest point in the daily cycle. Marks the beginning of the daily cycle (measured low to low).
+
+Half Cycle Low (HCL)
+A clear and distinguishable low that shows up approximately half way through the cycle. If the half cycle low is above the prior cycle low, it indicates bullish price action. If the half cycle low is below the prior cycle low, it indicates bearish price action. Half cycle lows serve to flush sentiment before allowing the market to continue to push in the direction of the primary trend.
+
+Weekly Cycle
+A larger fractal of the daily cycle. A weekly cycle is comprised of multiple daily cycles chained together (usually 3 – 5 daily cycles).
+
+Weekly Cycle Low (WCL)
+The lowest low within the weekly cycle. Marks the beginning of the weekly cycle (measured low to low).
+
+Yearly Cycle
+A larger fractal of the weekly cycle. A yearly cycle is comprised of multiple weekly cycles chained together.
+
+Yearly Cycle Low (YCL)
+The lowest low within the yearly or multiyear cycle. Marks the beginning of the yearly cycle (measured from low to low).
+
+Midpoint
+The Midpoint is found by measuring any given cycle from low to low and dividing by 2. The midpoint is the half way mark of any given cycle.
+
+Left Translated (LT)
+A cycle is classified as Left Translated if the top for that given cycle forms to the left of the midpoint. LT cycle tops are considered bearish.
+
+Middle Translated / Mid Translated (MT)
+A cycle is classified as Mid Translated if the top for that given cycle forms at the Midpoint. MT cycle tops are considered neutral / bullish.
+
+Right Translated (RT)
+A cycle is classified as Right Translated if the top for that given cycle forms after the Midpoint. RT cycle tops are considered bullish.
+
+─────────────────────────────────────────────
+
+Fractalisation
+
+As previously stated, a fractalisation occurs wherein cycles of shorter duration exist inside of cycles of longer duration. Below in Figure 1 is an illustration of a typical weekly cycle, comprised of 4 daily cycles chained together. Note in this example, 4 daily cycles are contained within a larger, Right Translated weekly cycle.
+
+Figure 1 – A typical weekly cycle, comprised of 4 daily cycles chained together.
+
+The cycles of larger duration will influence the direction of the cycles of shorter duration.
+
+For example, if a weekly cycle low has formed and is expected to trend up, it is only reasonable to expect to observe the daily cycles within said weekly cycle, to lean bullish and therefore, Right Translate more often than Left Translate. It would also be expected that we do not see the daily cycles fail by closing candles below the prior cycle low.
+
+Conversely, if the weekly cycle was expect to trend down, we would expect to see multiple Left Translated daily cycles that are observed to exhibit failed cycles.
+
+─────────────────────────────────────────────
+
+Cycle Translation
+
+The cycle translation provides lots of context and expectation regarding future price action.
+
+• A Right Translated cycle indicates bullish price action and tells us to expect a short and sharp correction into the next expected cycle low / timing window. It also suggests that the upcoming cycle low will be higher than the prior cycle low. • A Left Translated cycle indicates bearish price action and tells us to expect not only a longer period of decline in terms of time, but also a cycle failure (close below the prior cycle low). Following a failed cycle, it is reasonable to expect the upcoming cycle low to form at a lower price level than the prior cycle low.
+
+If we start to observe multiple, back-to-back Right Translated daily cycles during the formation of an up-trending weekly cycle, we can expect to see a Left Translated cycle show up in the final daily cycle, before the decline into a weekly cycle low, as shown in Figure 2 below:
+
+Figure 2 – A bullish weekly cycle, comprised of 3 Right Translated daily cycles and 1 Left Translated daily cycle.
+
+Figure 3 below shows a worked example of a bullish weekly cycle, using the $SPX. Figure 3 shows a bullish weekly cycle comprised of 3 Right Translated cycles and 1 Left Translated cycle. Note, the blue arrows denote the weekly cycle lows. The green arrows denote the daily cycle lows. The red arrows denote the daily cycle highs. The blue vertical lines mark the mid-point of each respective daily cycle and the counts are labeled, measured low to low as always.
+
+Figure 3 – A worked example of a bullish weekly cycle observed in the $SPX
+
+Conversely, in a Left Translated weekly cycle, we would expect to observe the first daily cycle to Right Translate, followed by multiple Left Translated and failed cycles, illustrated in Figure 4 below:
+
+Figure 4 – A bearish weekly cycle, comprised of 1 Right Translated daily cycle and 3 Left Translated daily cycles.
+
+Similarly, Figure 5 below shows a worked example of a bearish weekly cycle, using the $SPX. Figure 5 shows a bearish weekly cycle comprised of 1 Right Translated cycle and 3 Left Translated cycles. Again, the blue arrows denote the weekly cycle lows. The green arrows denote the daily cycle lows. The red arrows denote the daily cycle highs. The blue vertical lines mark the mid-point of each respective daily cycle and the counts are labeled, measured low to low as always.
+
+Figure 5 – A worked example of a bearish weekly cycle observed in the $SPX
+
+We can see that if we anticipate bullish weekly cycles, we should observe confirmation in the form of Right Translated daily cycles that do not exhibit cycle failure.
+
+If the expectation is the weekly cycle will be bearish and Left Translate, we should expect to observe multiple Left Translated daily cycles and for those daily cycles to exhibit cycle failure.
+
+─────────────────────────────────────────────
+
+Confirmation
+
+It is important to wait for confirmation of a new cycle before entering a trade. Whilst approximately 70 to 80% (depending on the asset) of cycles lows form inside of the market-specific timing window, during financially stressed conditions or unusual circumstances, markets can continue to decline significantly past both the expected timing window and any price levels that investors may have been anticipating. As such, it is crucial that cycle traders wait for confirmation of a new daily cycle before entering into a position.
+
+Whilst there is no set rule about what can and cannot be used as confirmation and traders/investors can assign their own confirmation rule set; the following are all good examples:
+
+Swing low pattern
+
+Moving average cross
+
+Oscillator reversal signal
+
+Trendline breakouts
+
+Each of these will be discussed in more detail on the following pages:
+
+─────────────────────────────────────────────
+
+Swing Low Pattern
+
+A swing low represents a relative low point in price action within a given time frame. On a daily chart, a swing low would likely be the lowest price in the most recent month. A swing low pattern is characterized by a low that is followed by a candle that typically opens above the body of the low and closes above the upper wick of the candle that marks the ultimate low (swing low).
+
+For a swing high, the inverse is true. A swing high pattern is characterized by a high which is followed by a candle that typically opens below the body of the low, and closes below the lower wick of the candle that marks the ultimate high (swing high).
+Figure 6 – Swing Low & Swing High Candlestick Pattern
+
+Waiting for confirmation of a new cycle in the form of a swing low gives increased confidence that the cycle has ended and a new cycle has started. The swing low also provides an area on the chart around which risk can be managed using a stop loss.
+
+If the swing low is in fact the cycle low and a new cycle has begun, price should not trade below that level again in a bullish, Right Translated cycle. If price were to trade below the swing low, the cycle will qualify as a failed cycle, telling us to be open to further downside. Stop losses should be placed a little below the swing low, to ensure the trade is not taken out unnecessarily should a retest of the swing low level occur.
+
+─────────────────────────────────────────────
+
+Moving Average Cross
+
+Another popular signal used to confirm a new cycle has commenced is a moving average cross. A moving average cross is defined as a trading signal whereby the price crosses above and closes above a moving average indicator. Most commonly, a 10 period simple moving average (SMA) is used but traders & investors are entitled to select another moving average if desired.
+
+The confirmation signal is considered to have occurred if a low is observed and followed by price trading and closing above the moving average. This signal gives increased confidence that a new cycle has begun; again, stop losses should be placed slightly below the cycle low to ensure risk is managed for any ensuing long trades.
+
+Figure 7 – Confirmation using a 10 period Simple Moving Average cross
+
+─────────────────────────────────────────────
+
+Oscillator Reversal Signal
+
+The integration of a technical momentum oscillator can also be used to provide a confirmation signal. Momentum Oscillators such as Relative Strength Index (RSI), Moving Average Convergence Divergence (MACD), Commodity Channel Index (CCI) or a variant of a Stochastic Oscillator can be applied to the chart and used to indicate when a cycle low is ready to confirm; with a momentum shift ready to emerge. The momentum indicator serves to signal a potential reversal in the market and confirm a new cycle has started.
+
+Similarly to the moving averages, traders & investors have full discretion to select their preferred momentum indicator.
+
+The confirmation signal is considered to have occurred if a low is observed with a confirmed momentum shift in the oscillator. This signal gives increased confidence that a new cycle has begun; again, stop losses should be placed slightly below the cycle low to ensure risk is managed for any ensuing long trades.
+
+Figure 8 – Confirmation using DSS Momentum Oscillator
+
+─────────────────────────────────────────────
+
+Trendline Breakout
+
+Confirmation can also be signaled utilizing trendline breakouts. By simply drawing a trendline that connects the outer most bodies and wicks of the candlesticks, a trendline is set.
+
+The confirmation signal is considered to have occurred if a low is observed and followed by price trading and closing above the trendline. This signal gives increased confidence that a new cycle has begun; again, stop losses should be placed slightly below the cycle low to ensure risk is managed for any ensuing long trades.
+
+Figure 9 – Confirmation via a trendline breakout
+
+Traders must always wait for confirmation before entering into a trade to ensure they are not caught out buying an asset that has yet to finish declining. Traders must also be ready to act on confirmation should it occur outside of the expected timing window. If confirmation signals are observed, executing the trade can ensure the new cycle does not escape the trader. As such, traders must always be ready to execute on confirmation even if the confirmation signal occurs slightly outside the timing window.
+
+─────────────────────────────────────────────
+
+Cycle Inversion
+
+Cycle inversions are rare and often difficult to deal with. A cycle inversion is defined as a half cycle low that is forced into becoming an early cycle low. This typically indicates seller exhaustion and is often followed by a violent rally. As such, traders & investors must always be on the lookout for cycle inversions.
+Figure 10 – Cycle inversion observed in $NDX
+
+─────────────────────────────────────────────
+
+Timing based cycle lows
+
+Although cycle lows typically present in an observable and obvious low, occasionally timing based cycle lows present on the chart and traders should be aware of these and ready to spot them, despite the rarity with which they present.
+
+A timing based cycle low functions just like a regular cycle low, only absent of any visible low on the chart. Price tends to trade sideways into the timing window and then, without any sign of a decline or a low, price pushes strongly upwards, triggering confirmation signals and indicating a new cycle has begun.
+
+These timing based cycle lows can be difficult to deal with if one is not ready for them and again, shows us the importance of respecting confirmation signals when they occur.
+
+Below in Figure 11 is an example of a timing based cycle low observed in GOLD.
+Figure 11 – Timing Based Cycle Low as seen in GOLD
+
+─────────────────────────────────────────────
+
+Cycle Count Table
+
+Below in Table 1 are a list of assets and their respective, observable cycle ranges. These are the observable average cycle lengths and timing windows for some of the more commonly traded assets. For anyone new to cycle trading, these can be used as a guide for what to expect in each respective asset. Cycle lows can be marked on price charts and the timing windows from Table 1 can be used to determine when the next, upcoming cycle lows should be expected.
+
+Table 1 – Assets and observable cycle ranges
+
+ASSET DAILY CYCLE RANGE WEEKLY CYCLE RANGE YEARLY / MACRO CYCLE RANGE
+DXY 15 - 24 days 16 – 20 weeks 3 years
+BITCOIN 54 – 66 days 24 – 42 weeks 4 years
+S&P500 36 – 44 days 22 – 31 weeks 4 years
+NASDAQ 100 36 – 44 days 22 – 31 weeks 4 years
+DOW JONES 36 – 44 days 22 – 31 weeks 4 years
+INDUSTRIAL AVERAGE
+GOLD 22 – 28 days 22 – 26 weeks 8 years
+OIL 36 – 44 days 22 – 26 weeks 3 years
+ETHEREUM 54 – 66 days 24 – 42 weeks 4 years
+
+─────────────────────────────────────────────
+
+Applying Cycle Counts to Other Assets
+
+Since cycles are observable everywhere, it is possible to apply cycles to any asset you trade. The simplest way to find the cycle count for any given asset is to mark all the swing lows on the weekly timeframe. The average of all of these weekly cycle lows gives the expected weekly cycle count. To determine the timing window, apply a tolerance of +/- 10% to the previously determined expected weekly cycle count.
+
+Once the cycles have been observed and noted on the weekly timeframe, it is likely each weekly cycle will contain between 3 and 6 daily cycles, although this depends on the asset being analysed.
+
+Next, by changing to a daily timeframe and repeating the process used on the weekly timeframe, the daily cycle count and timing window can be deduced.
+
+Finally, by using a monthly timeframe chart and applying the same observational technique; marking each of the major lows seen on the monthly chart will highlight the longer term, yearly or multiyear cycles.
+
+The more price history an asset has, the more confidence we can have in the cycle counts we observe in the charts.
+
+─────────────────────────────────────────────
+
+Nuances
+
+Over the years of trading I have been able to observe several characteristics that seem to be asset class specific. These can be helpful to keep in the back one’s mind as price begins to enter the expected timing window of an asset.
+
+• The rule of alternation: Shorter cycles tend to be followed by longer cycles and vice versa. • The “2 drives pattern”: Pertinent particularly to the S&P500, NASDAQ100, DOW JONES INDUSTRIAL AVERAGE and GOLD. A perfect 2 drives pattern is defined as a swing low, a counter trend bounce, and an undercut of the low to produce a lower low that results in a swing low and the beginning of a new cycle. This pattern can also exhibit an equal low (double bottom) or occasionally, a higher low.  Figure 12 – The 2 Drives Pattern Schematic
+ Figures 13a and 13b – Worked examples in the $SPX. • Bitcoin-specific nuances: Bitcoin often produces V-shaped cycle lows rather than a 2 drives pattern. It may also exhibit a fake out failed cycle, where a cycle appears to fail but does not produce a lower cycle low as expected.  Figure 14 – V-Shaped Cycle Low Schematic
+ Figures 15a and 15b – Worked examples from Bitcoin
+ Figure 16 – Example of Bitcoin’s fake out failed cycle (Nov 2022 bear market lows)
+
+─────────────────────────────────────────────
+
+Risk Management
+
+Risk management is critical as it underpins the effectiveness of cycle trading.
+
+• Discipline is key; risk management is a discipline, not a skill. • Stop Losses: Every trade must use a stop loss – no exceptions. • The 2% Rule: Stop losses must be sized so that if the trade is stopped out, no more than 2% of the total account is lost. If stops need to be wide, position size should be reduced. • The 6% Rule: Risk within any one sector should not exceed 6%. For example, if trading 10 correlated stocks, position sizes should be adjusted so that total sector risk does not exceed 6%. • Tables (Tables 2 & 3) illustrate the relationship between account losses, required recovery gains, and win rates for a profitable system.
+
+─────────────────────────────────────────────
+=== Cycle Trading Pattern Manual (Walter Bressert) ===
+
+TIMING IS EVERYTHING
+…And the use of time cycles can greatly improve the accuracy and success of your trading and/or system.
+
+There is no magic oscillator or indicator that will bring you success in the markets. Knowledge of trading techniques and tools to improve TIMING and determine TREND is the key to low risk high probability trades that can bring you success.
+
+Knowledge, self-discipline and persistence are the true keys to success in trading. Over time you will develop a trading style that fits your personality and trading skills. There are many tools to help improve your trading, but only cycles will allow you to add the element of TIME into your trading.
+
+Simple buy and sell signals do not consider the whole picture. By combining mechanical trading signals with daily and weekly cycles (or two intra-day time periods and cycles, such as a 45-minute and 180-minute, or a 5-minute and 20-minute), retracements, trend indicators and trendlines into Cycle Trading Patterns, you can greatly improve your accuracy and odds of making money on a trade or with a system. The following charts and trading concepts are based on trading the long side of a market. The same techniques and concepts work in mirror image fashion for trading the short side.
+
+THE CYCLE TRADING PATTERN MANUAL
+By Walter Bressert
+www.walterbressert.com
+
+─────────────────────────────────────────────
+
+IDENTIFYING CYCLE TOPS AND BOTTOMS USING OSCILLATORS
+
+Chart 1 – This chart shows the ebb and flow of prices, but identification of the Trading Cycle bottoms and tops requires a little effort to be visible to the untrained eye.
+Chart 1 – Do you see the cycles in this chart?
+
+Chart 2 – Cycles are measured from bottom to bottom. Every time frame of every market has a dominant Trading Cycle averaging from 14 to 25 bars (weeks, days, half days, hours, minutes or ticks). Most Trading Cycles in the stock and futures markets tend to cluster in the 18 to 22 bar range, averaging 20 bars from bottom to bottom. In Chart 2, T-Bonds exhibits a daily trading cycle of 21 days from bottom to bottom. The trading cycle tops and bottoms are indicated by the arrows.
+Chart 2 – The arrows indicate trading cycle bottoms and tops.
+
+─────────────────────────────────────────────
+
+DETRENDING TAKES THE MYSTERY OUT OF CYCLES
+
+Historical cycles show great potential for low risk trades. But to make cycles tradable it is necessary to define the tops and bottoms so they can be identified and traded with mechanical buy and sell signals.
+
+For over 50 years the non-profit Foundation for the Study of Cycles has used a procedure called centered detrending to identify cycle lengths in natural phenomena, including economic activity. The advantage of centered detrending over Fourier analysis and Spectral analysis is that you can visibly observe the historical cycle bottoms and tops. This takes the “mystery” out of cycle trading and analysis. When you can look back over 20 years of price history and see the consistency and tradability of cycles, you have the confidence to trade them. Note: This method is used to trade the shorter-term cycles occurring in the direction of TREND, not the big trend reversals.
+
+The process to detrend a cycle is simple:
+
+Calculate a moving average the same length as the potential Trading Cycle. For most markets, use a 20-bar moving average of the close. Instead of plotting it on the last day, center it by plotting it 10 days back (half the cycle length). This is called a centered moving average.  Chart 3 – Centered Detrend – Trading Cycle tops and bottoms are visible.
+
+Subtract the moving average from the high and low of each price bar and plot the results around a zero line directly below each price bar. The zero line represents the centered moving average.
+
+The centered detrend mitigates the effects of trend and reveals the highs and lows of the trading cycle.
+
+This process can be programmed into many trading platforms. The WB_Cen-MA and WB_CenDetrend indicators are examples available for TradeStation and SuperCharts users.
+
+Chart 4 – Compressed chart with Centered Detrend showing cycle tops and bottoms (sell line at .80, buy line at - .80; a rise above 2.0 indicates an imminent top; a drop below -2.0 indicates a bottom).
+
+However, because the centered detrend lags prices by half the cycle length (10 bars), it works well for historical cycles but not for real-time trading.
+
+─────────────────────────────────────────────
+
+OSCILLATORS SHOW CYCLE TOPS AND BOTTOMS
+
+Standard oscillators in trading platforms can be overlaid on the centered detrend (or on price charts) to identify cycle tops and bottoms. Their performance can be improved by ensuring:
+
+The oscillator turns when prices turn.
+
+The oscillator remains relatively steady at cycle tops and bottoms.
+
+The oscillator’s amplitude reaches extreme ranges corresponding to cycle bottoms and tops.
+
+An oscillator that meets these criteria is the RSI3M3 (a 3-period RSI smoothed with a 3-bar moving average). It tracks the cycle tops and bottoms nearly as well as the centered detrend and can be used to generate mechanical trading signals. It is current to the most recent price bar, turning down to indicate the most recent cycle top missed by the centered detrend.
+
+Chart 5 – RSI3M3 oscillator overlaid on the centered detrend.
+
+─────────────────────────────────────────────
+
+MECHANICAL TRADING SIGNALS
+
+Chart 6 – Mechanical buy signal using the RSI3M3 oscillator:
+
+The RSI3M3 drops below the buy line at 30, indicating oversold conditions.
+
+The oscillator then turns up, signaling a momentum reversal; the bar where this occurs is marked as the “setup bar.”
+
+A buy stop is placed one tick above the high of the setup bar.
+
+After entry, a protective sell stop is placed one tick below the cycle low. There are variations (A and B setups) based on whether the setup bar is the cycle low or occurs a couple of days before.
+
+Chart 7 – Illustrates buy signals, with indicators showing trading cycle bottoms, setup bars, and entry points.
+
+Chart 8 – Introduces a 5-bar moving average crossover of the RSI3M3 to create a detrended oscillator. This detrended oscillator often gives buy/sell signals for the half trading cycle. In strong trends, its signals are particularly effective.
+
+Between the signals of the RSI3M3 and the detrended oscillator, all trading cycle bottoms (and many half-cycle bottoms) can be identified.
+
+─────────────────────────────────────────────
+
+THE INTERPLAY OF CYCLES WITHIN CYCLES
+
+The key to trading with cycles is understanding that most trading cycles contain a half-cycle. For example, a 20-day cycle is made up of two 10-day cycles. Identifying the low of the first 10-day cycle helps forecast the 20-day cycle low.
+
+Right Translation in Bull Markets
+• In bull markets, the top of the 20-day cycle is typically the top of the second 10-day cycle. On average, the move from bottom to top takes three weeks, while the move from top to bottom takes one week.
+
+Left Translation in Bear Markets
+• In bear markets, the first 10-day cycle tops and the overall timing may differ (e.g., one week upward, three weeks downward), providing guidance for short positions.
+
+─────────────────────────────────────────────
+
+TIMING BANDS
+
+Timing bands forecast the periods when cycle tops and bottoms are likely (about 70% accuracy).
+• Top timing bands: Most cycle tops occur within these ranges.
+• Bottom timing bands: Most cycle bottoms occur within the overlap of the bottoming bands. Chart 9 – Illustrates timing bands with cycle tops and bottoms.
+
+─────────────────────────────────────────────
+
+THE HOLY GRAIL: TRADE WITH THE TREND
+
+The key to trading any market is to trade with the trend.
+• The trend is determined by the dominant trading cycle on the next longer time frame (the primary cycle).
+ – For daily charts, this is usually the 14 to 25-week cycle.
+ – For intraday cycles, it might be set by a higher timeframe (e.g., a 20-minute chart for a 5-minute cycle).
+• Fibonacci retracements (typically 38–62%) are important in determining cycle bottoms in an uptrend (or cycle tops in a downtrend).
+• A close below a 62% retracement in an uptrend often signals a trend reversal.
+
+─────────────────────────────────────────────
+
+TREND INDICATORS
+
+Several trend indicators are used in Cycle Trading Patterns: • EMA Trend Indicator – Uses exponential moving averages to determine trend direction. • EMA% Trend – Calculates the percentage difference between EMAs to detect trend slowdowns or reversals. • MACD Trend Indicator – Crossovers help confirm trend continuation. • Keltner Channel – Helps identify overextended moves and potential reversals. • Trendlines – Drawn on bar charts or close-only charts to confirm cycle tops/bottoms and reversals.
+
+Charts 13–19 illustrate the use of these indicators, their integration with cycle signals, and how they contribute to a comprehensive trading pattern.
+
+─────────────────────────────────────────────
+
+CYCLE TRADING PATTERN
+
+A typical cycle trading pattern may include:
+
+A retracement within the Fibonacci 38–62% range in an established uptrend.
+
+A mechanical RSI3M3 setup and buy signal at a cycle bottom.
+
+Confirmation from trend indicators (EMAs, MACD, Keltner Channel) ensuring the trend is intact.
+
+Entry is executed based on a setup bar and mechanical signal, with protective stops placed just below the cycle low.
+
+Chart 21 – Shows a complete cycle trading pattern integrating oscillators, trend indicators, retracements, and mechanical entry signals.
+
+─────────────────────────────────────────────
+
+End of Document
+
+─────────────────────────────────────────────
+
+This file (combined_data.txt) contains the full text extracted from both PDFs. Feel free to download and use it as needed.
