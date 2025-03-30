@@ -2,6 +2,31 @@
 
 A powerful market cycle analysis tool that helps traders and investors identify market cycles across different timeframes and assets.
 
+![Bressart Cycle Indicator Tool Screenshot](screenshot.png)
+
+The screenshot above demonstrates the tool's clean interface analyzing Bitcoin's daily cycles:
+
+**Chart Elements:**
+- Price action with candlestick patterns
+- Key moving averages:
+  - 20 SMA (orange)
+  - 50 SMA (red)
+- Cycle markers:
+  - Daily Cycle Lows (DCL): Green triangles up
+  - Daily Cycle Highs (DCH): Green triangles down
+- Next cycle timing window (yellow box)
+- Volume analysis with 20-period SMA
+
+**Interface Features:**
+- Clean, dark theme design
+- Essential indicators only in legend
+- Clear cycle annotations
+- Interactive sidebar controls for:
+  - Asset selection
+  - Timeframe choice
+  - Cycle detection method
+  - Custom date ranges
+
 ## Features
 
 ### 1. Multi-Asset Support
@@ -38,33 +63,6 @@ A powerful market cycle analysis tool that helps traders and investors identify 
 - Cycle high/low annotations
 - Future cycle timing windows
 - Detailed cycle statistics
-
-## Example
-
-![Bressart Cycle Indicator Tool Screenshot](screenshot.png)
-
-The screenshot above demonstrates the tool's clean interface analyzing Bitcoin's daily cycles:
-
-**Chart Elements:**
-- Price action with candlestick patterns
-- Key moving averages:
-  - 20 SMA (orange)
-  - 50 SMA (red)
-- Cycle markers:
-  - Daily Cycle Lows (DCL): Green triangles up
-  - Daily Cycle Highs (DCH): Green triangles down
-- Next cycle timing window (yellow box)
-- Volume analysis with 20-period SMA
-
-**Interface Features:**
-- Clean, dark theme design
-- Essential indicators only in legend
-- Clear cycle annotations
-- Interactive sidebar controls for:
-  - Asset selection
-  - Timeframe choice
-  - Cycle detection method
-  - Custom date ranges
 
 ## Installation
 
