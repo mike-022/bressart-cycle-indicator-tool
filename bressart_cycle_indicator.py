@@ -37,9 +37,6 @@ class BressartCycleIndicator:
         if custom_params:
             self.cycle_params.update(custom_params)
         
-        # Initialize CMA strategy settings
-        self.use_cma_strategy = False  # Default to off
-        
         # Calculate various SMAs for cycle confirmation
         self.data['SMA10'] = calculate_sma(self.data['Close'], window=10)
         self.data['SMA20'] = calculate_sma(self.data['Close'], window=20)
@@ -48,11 +45,26 @@ class BressartCycleIndicator:
         
         # Calculate RSI for cycle confirmation
         self.data['RSI'] = self.calculate_rsi(self.data['Close'], window=14)
+        self.data['RSI3M3'] = self.calculate_rsi3m3(self.data['Close'])
         
-        # Calculate volume SMA and momentum
+        # Calculate Stochastic for cycle confirmation
+        self.data['Stoch_K'], self.data['Stoch_D'] = self.calculate_stochastic(self.data['High'], 
+                                                                              self.data['Low'], 
+                                                                              self.data['Close'])
+        
+        # Calculate MACD for trend confirmation
+        self.data['MACD'], self.data['MACD_Signal'], self.data['MACD_Hist'] = self.calculate_macd(self.data['Close'])
+        
+        # Calculate Bollinger Bands
+        self.data['BB_Middle'], self.data['BB_Upper'], self.data['BB_Lower'] = self.calculate_bollinger_bands(self.data['Close'])
+        
+        # Calculate volume indicators
         if 'Volume' in self.data.columns:
             self.data['Volume_SMA20'] = calculate_sma(self.data['Volume'], window=20)
             self.data['Volume_Momentum'] = self.data['Volume'] / self.data['Volume_SMA20']
+            self.data['OBV'] = self.calculate_obv(self.data['Close'], self.data['Volume'])
+            self.data['CMF'] = self.calculate_cmf(self.data['High'], self.data['Low'], 
+                                                 self.data['Close'], self.data['Volume'])
         
         # Initialize cycle properties
         self.cycles = {
@@ -69,129 +81,219 @@ class BressartCycleIndicator:
         rs = gain / loss
         return 100 - (100 / (1 + rs))
     
+    def calculate_centered_ma(self, prices, period=20):
+        """
+        Calculate centered moving average as described in Bressert's manual.
+        The MA is plotted back half the period from the most recent close.
+        """
+        # Calculate regular moving average
+        ma = prices.rolling(window=period).mean()
+        # Shift it back by half the period (10 days for 20-bar MA)
+        centered_ma = ma.shift(-period//2)
+        return centered_ma
+
+    def calculate_rsi3m3(self, prices):
+        """
+        Calculate RSI3M3 as described in Bressert's manual:
+        RSI with period 3 smoothed with 3-bar moving average
+        """
+        # Calculate RSI with period 3
+        delta = prices.diff()
+        gain = (delta.where(delta > 0, 0)).rolling(window=3).mean()
+        loss = (-delta.where(delta < 0, 0)).rolling(window=3).mean()
+        rs = gain / loss
+        rsi3 = 100 - (100 / (1 + rs))
+        # Smooth with 3-bar moving average
+        rsi3m3 = rsi3.rolling(window=3).mean()
+        return rsi3m3
+
+    def calculate_stochastic(self, high, low, close, k_period=14, d_period=3):
+        """Calculate Stochastic Oscillator."""
+        lowest_low = low.rolling(window=k_period).min()
+        highest_high = high.rolling(window=k_period).max()
+        
+        k = 100 * (close - lowest_low) / (highest_high - lowest_low)
+        d = k.rolling(window=d_period).mean()
+        
+        return k, d
+
+    def calculate_macd(self, prices, fast=12, slow=26, signal=9):
+        """Calculate MACD indicator."""
+        exp1 = prices.ewm(span=fast, adjust=False).mean()
+        exp2 = prices.ewm(span=slow, adjust=False).mean()
+        macd = exp1 - exp2
+        signal_line = macd.ewm(span=signal, adjust=False).mean()
+        histogram = macd - signal_line
+        
+        return macd, signal_line, histogram
+
+    def calculate_bollinger_bands(self, prices, window=20, num_std=2):
+        """Calculate Bollinger Bands."""
+        middle_band = prices.rolling(window=window).mean()
+        std_dev = prices.rolling(window=window).std()
+        upper_band = middle_band + (std_dev * num_std)
+        lower_band = middle_band - (std_dev * num_std)
+        
+        return middle_band, upper_band, lower_band
+
+    def calculate_obv(self, close, volume):
+        """Calculate On-Balance Volume."""
+        price_change = close.diff()
+        obv = (volume * (price_change > 0).astype(int) - 
+               volume * (price_change < 0).astype(int)).cumsum()
+        return obv
+
+    def calculate_cmf(self, high, low, close, volume, period=20):
+        """Calculate Chaikin Money Flow."""
+        mfm = ((close - low) - (high - close)) / (high - low)
+        mfv = mfm * volume
+        cmf = mfv.rolling(window=period).sum() / volume.rolling(window=period).sum()
+        return cmf
+
+    def get_cycle_confirmation_signals(self, index):
+        """
+        Get comprehensive confirmation signals for a potential cycle low.
+        Returns a dictionary of technical signals and their values.
+        """
+        signals = {
+            'price_action': {
+                'below_20ma': self.data['Close'].iloc[index] < self.data['SMA20'].iloc[index],
+                'below_50ma': self.data['Close'].iloc[index] < self.data['SMA50'].iloc[index],
+                'below_bb_lower': self.data['Close'].iloc[index] < self.data['BB_Lower'].iloc[index]
+            },
+            'momentum': {
+                'rsi': self.data['RSI'].iloc[index],
+                'rsi_oversold': self.data['RSI'].iloc[index] < 30,
+                'rsi3m3': self.data['RSI3M3'].iloc[index],
+                'rsi3m3_oversold': self.data['RSI3M3'].iloc[index] < 30,
+                'stoch_k': self.data['Stoch_K'].iloc[index],
+                'stoch_d': self.data['Stoch_D'].iloc[index],
+                'stoch_oversold': self.data['Stoch_K'].iloc[index] < 20
+            },
+            'trend': {
+                'macd': self.data['MACD'].iloc[index],
+                'macd_signal': self.data['MACD_Signal'].iloc[index],
+                'macd_hist': self.data['MACD_Hist'].iloc[index],
+                'macd_bullish_cross': (index > 0 and 
+                                     self.data['MACD_Hist'].iloc[index-1] < 0 and 
+                                     self.data['MACD_Hist'].iloc[index] > 0)
+            }
+        }
+        
+        if 'Volume' in self.data.columns:
+            signals['volume'] = {
+                'volume_spike': self.data['Volume_Momentum'].iloc[index] > 1.2,
+                'obv_rising': self.data['OBV'].iloc[index] > self.data['OBV'].iloc[index-1],
+                'cmf': self.data['CMF'].iloc[index],
+                'money_flow_positive': self.data['CMF'].iloc[index] > 0
+            }
+        
+        # Calculate confirmation score (0-100)
+        score = 0
+        score += 20 if signals['price_action']['below_20ma'] else 0
+        score += 20 if signals['momentum']['rsi_oversold'] else 0
+        score += 20 if signals['momentum']['stoch_oversold'] else 0
+        score += 20 if signals['trend']['macd_bullish_cross'] else 0
+        score += 20 if 'volume' in signals and signals['volume']['volume_spike'] else 0
+        
+        signals['confirmation_score'] = score
+        
+        return signals
+
     def detect_cycle_lows(self, timeframe='daily'):
         """
-        Detect cycle lows based on Bob/Camel's rules and asset-specific timing windows.
-        Returns a list of cycle low indices.
+        Detect cycle lows using RSI3M3 strategy with Bressert's methodology.
         """
+        # Get cycle parameters based on timeframe
         if timeframe == 'daily':
             min_days, max_days = self.cycle_params[self.asset_type]['daily']
-            window = min_days // 5  # Even smaller window for better sensitivity
-            ma_reference = 'SMA10'
-            rsi_threshold = 35
-            # Extended windows for early/late cycles
-            extended_min = min_days * 0.5  # Allow even shorter cycles
-            extended_max = max_days * 1.4  # Allow cycles as long as 140% of normal
-        elif timeframe == 'weekly':
-            min_days, max_days = self.cycle_params[self.asset_type]['weekly']
-            window = min_days // 3
-            ma_reference = 'SMA20'
-            rsi_threshold = 40
-            extended_min = min_days * 0.7
-            extended_max = max_days * 1.3
-        else:  # yearly
-            min_days = self.cycle_params[self.asset_type]['yearly'] * 365
-            max_days = min_days * 1.2
-            window = min_days // 3
-            ma_reference = 'SMA200'
-            rsi_threshold = 40
-            extended_min = min_days * 0.8
-            extended_max = max_days * 1.2
+        else:
+            min_weeks, max_weeks = self.cycle_params[self.asset_type]['weekly']
+            min_days, max_days = min_weeks * 7, max_weeks * 7
         
-        # Use swing low detection with appropriate window
-        potential_lows = detect_swing_lows(self.data['Close'], window=window)
+        # Calculate minimum days between lows (40% of minimum cycle length)
+        min_distance = int(min_days * 0.4)
         
-        # Filter cycle lows based on Bob/Camel's rules
-        filtered_lows = []
-        for i in range(len(potential_lows)-1):
-            current_low = potential_lows[i]
-            next_low = potential_lows[i+1]
-            
-            # Get the dates from the index
-            current_date = self.data.index[current_low]
-            next_date = self.data.index[next_low]
-            
-            # Calculate the difference in days/weeks
-            if timeframe == 'weekly':
-                periods_between = (next_date - current_date).days / 7
-            else:
-                periods_between = (next_date - current_date).days
-            
-            # Check if this is a valid cycle low
-            price = self.data['Close'].iloc[current_low]
-            ma_value = self.data[ma_reference].iloc[current_low]
-            rsi_value = self.data['RSI'].iloc[current_low]
-            
-            # Calculate scores for different conditions
-            timing_score = 2 if min_days <= periods_between <= max_days else \
-                         1 if extended_min <= periods_between <= extended_max else 0
-            
-            price_ma_score = 2 if price <= ma_value else \
-                           1 if price <= ma_value * 1.02 else 0
-            
-            rsi_score = 2 if rsi_value < rsi_threshold else \
-                       1 if rsi_value < rsi_threshold + 5 else 0
-            
-            # Check for higher high after the low (within next 15 periods)
-            future_slice = slice(current_low + 1, min(current_low + 16, len(self.data)))
-            future_high = self.data['High'].iloc[future_slice].max()  # Use High instead of Close
-            future_low = self.data['Low'].iloc[future_slice].min()  # Check if price moves lower first
-            
-            # Score based on price movement pattern - more lenient
-            higher_high_score = 2 if future_high > price * 1.03 else \
-                              1 if future_high > price * 1.01 else 0
-            
-            # Volume condition (if available)
-            volume_score = 0
-            if 'Volume' in self.data.columns:
-                vol_ratio = self.data['Volume'].iloc[current_low] / self.data['Volume_SMA20'].iloc[current_low]
-                volume_score = 2 if vol_ratio > 1.2 else \
-                             1 if vol_ratio > 0.8 else 0
-            
-            # Calculate total score
-            total_score = timing_score + price_ma_score + rsi_score + higher_high_score + volume_score
-            min_required_score = 3 if timing_score > 0 else 4  # Lower threshold for all cycles
-            
-            if total_score >= min_required_score:
-                filtered_lows.append(current_low)
+        potential_lows = []
+        last_low_idx = None
         
-        # Add the last cycle low if it meets criteria
-        if len(potential_lows) > 0:
-            last_low = potential_lows[-1]
-            last_date = self.data.index[last_low]
+        for i in range(3, len(self.data)-1):
+            # Skip if too close to previous low
+            if last_low_idx is not None and i - last_low_idx < min_distance:
+                continue
             
-            if timeframe == 'weekly':
-                periods_since_last = (self.data.index[-1] - last_date).days / 7
-            else:
-                periods_since_last = (self.data.index[-1] - last_date).days
-            
-            # Check if this could be the start of a new cycle - more lenient for recent lows
-            if periods_since_last >= extended_min * 0.4:  # Even more lenient for last low
-                price = self.data['Close'].iloc[last_low]
-                ma_value = self.data[ma_reference].iloc[last_low]
-                rsi_value = self.data['RSI'].iloc[last_low]
+            # Check for local price minimum
+            price_series = self.data['Low']
+            if (price_series.iloc[i] <= price_series.iloc[i-1] and 
+                price_series.iloc[i] <= price_series.iloc[i+1]):
                 
-                # Calculate scores for the last low
-                timing_score = 1  # Give some credit for timing
-                price_ma_score = 2 if price <= ma_value else \
-                               1 if price <= ma_value * 1.03 else 0  # More lenient MA comparison
-                rsi_score = 2 if rsi_value < rsi_threshold else \
-                           1 if rsi_value < rsi_threshold + 7 else 0  # More lenient RSI
+                # Get confirmation signals
+                signals = self.get_cycle_confirmation_signals(i)
+                score = 0
+                explanation = []
                 
-                # Volume score
-                volume_score = 0
-                if 'Volume' in self.data.columns:
-                    vol_ratio = self.data['Volume'].iloc[last_low] / self.data['Volume_SMA20'].iloc[last_low]
-                    volume_score = 2 if vol_ratio > 1.1 else \
-                                 1 if vol_ratio > 0.7 else 0  # More lenient volume requirement
+                # 1. RSI3M3 Oversold (0-30 points)
+                rsi3m3 = self.data['RSI3M3'].iloc[i]
+                if rsi3m3 < 30:
+                    score += 30
+                    explanation.append(f"RSI3M3 oversold at {rsi3m3:.1f}")
+                elif rsi3m3 < 35:
+                    score += 20
+                    explanation.append(f"RSI3M3 near oversold at {rsi3m3:.1f}")
                 
-                total_score = timing_score + price_ma_score + rsi_score + volume_score
+                # 2. Price Action (0-20 points)
+                if signals['price_action']['below_20ma']:
+                    score += 10
+                    explanation.append("Price below 20MA")
+                if signals['price_action']['below_50ma']:
+                    score += 10
+                    explanation.append("Price below 50MA")
                 
-                if total_score >= 2:  # Keep low threshold for last cycle low
-                    filtered_lows.append(last_low)
+                # 3. Momentum Confirmation (0-20 points)
+                if signals['momentum']['rsi_oversold']:
+                    score += 10
+                    explanation.append(f"RSI oversold at {signals['momentum']['rsi']:.1f}")
+                if signals['momentum']['stoch_oversold']:
+                    score += 10
+                    explanation.append(f"Stochastic oversold at {signals['momentum']['stoch_k']:.1f}")
+                
+                # 4. Volume Confirmation (0-15 points)
+                if 'volume' in signals:
+                    if signals['volume']['volume_spike']:
+                        score += 10
+                        explanation.append("Volume spike detected")
+                    if signals['volume']['obv_rising']:
+                        score += 5
+                        explanation.append("OBV rising")
+                
+                # 5. MACD Confirmation (0-15 points)
+                if signals['trend']['macd_bullish_cross']:
+                    score += 15
+                    explanation.append("MACD bullish cross")
+                elif signals['trend']['macd_hist'] > signals['trend']['macd_hist']:
+                    score += 5
+                    explanation.append("MACD histogram improving")
+                
+                # Check timing if we have a previous low
+                if last_low_idx is not None:
+                    days_since_last = (self.data.index[i] - self.data.index[last_low_idx]).days
+                    if min_days * 0.8 <= days_since_last <= max_days * 1.2:
+                        score += 10
+                        explanation.append(f"Good timing: {days_since_last} days since last low")
+                
+                # Accept if score is sufficient (45+ points)
+                if score >= 45:
+                    potential_lows.append({
+                        'index': i,
+                        'signal_date': self.data.index[i],
+                        'confirmation_signals': signals,
+                        'confirmation_score': score,
+                        'explanation': "\n".join(explanation)
+                    })
+                    last_low_idx = i
         
-        return filtered_lows
-    
+        return potential_lows
+
     def identify_cycle_translation(self, cycle_start, cycle_end):
         """
         Identify if a cycle is Left Translated, Mid Translated, or Right Translated.
@@ -300,7 +402,10 @@ class BressartCycleIndicator:
                     # Check if RSI is showing oversold
                     rsi = self.data['RSI'].iloc[i]
                     if rsi < 40:  # More lenient RSI threshold for CMA strategy
-                        potential_lows.append(i)
+                        potential_lows.append({
+                            'index': i,
+                            'signal_date': self.data.index[i]
+                        })
         
         # Filter lows based on minimum distance
         filtered_lows = []
@@ -311,8 +416,8 @@ class BressartCycleIndicator:
                 filtered_lows.append(low)
                 continue
                 
-            prev_low = filtered_lows[-1]
-            days_between = (self.data.index[low] - self.data.index[prev_low]).days
+            prev_low = filtered_lows[-1]['index']
+            days_between = (self.data.index[low['index']] - self.data.index[prev_low]).days
             
             if days_between >= min_distance:
                 filtered_lows.append(low)
@@ -327,18 +432,17 @@ class BressartCycleIndicator:
         
         # First detect daily cycles
         daily_cycles = []
-        if self.use_cma_strategy:
-            daily_lows = self.detect_cma_cycles('daily')
-        else:
-            daily_lows = self.detect_cycle_lows('daily')
+        daily_lows = self.detect_cycle_lows('daily')
         
         for i in range(len(daily_lows)-1):
-            start = daily_lows[i]
-            end = daily_lows[i+1]
+            start = daily_lows[i]['index']
+            end = daily_lows[i+1]['index']
+            signal_date = daily_lows[i]['signal_date']
             
             cycle_info = {
                 'start': start,
                 'end': end,
+                'signal_date': signal_date,
                 'translation': self.identify_cycle_translation(start, end),
                 'failed': self.detect_cycle_failure(start, end),
                 'half_cycle': self.detect_half_cycle_low(start, end)
@@ -349,18 +453,17 @@ class BressartCycleIndicator:
         
         # Then detect weekly cycles
         weekly_cycles = []
-        if self.use_cma_strategy:
-            weekly_lows = self.detect_cma_cycles('weekly')
-        else:
-            weekly_lows = self.detect_cycle_lows('weekly')
+        weekly_lows = self.detect_cycle_lows('weekly')
         
         for i in range(len(weekly_lows)-1):
-            start = weekly_lows[i]
-            end = weekly_lows[i+1]
+            start = weekly_lows[i]['index']
+            end = weekly_lows[i+1]['index']
+            signal_date = weekly_lows[i]['signal_date']
             
             cycle_info = {
                 'start': start,
                 'end': end,
+                'signal_date': signal_date,
                 'translation': self.identify_cycle_translation(start, end),
                 'failed': self.detect_cycle_failure(start, end),
                 'half_cycle': self.detect_half_cycle_low(start, end)
@@ -374,12 +477,14 @@ class BressartCycleIndicator:
         yearly_lows = self.detect_cycle_lows('yearly')
         
         for i in range(len(yearly_lows)-1):
-            start = yearly_lows[i]
-            end = yearly_lows[i+1]
+            start = yearly_lows[i]['index']
+            end = yearly_lows[i+1]['index']
+            signal_date = yearly_lows[i]['signal_date']
             
             cycle_info = {
                 'start': start,
                 'end': end,
+                'signal_date': signal_date,
                 'translation': self.identify_cycle_translation(start, end),
                 'failed': self.detect_cycle_failure(start, end),
                 'half_cycle': self.detect_half_cycle_low(start, end)
@@ -390,6 +495,32 @@ class BressartCycleIndicator:
         
         return analysis
     
+    def calculate_next_low_window(self, last_low_date, timeframe='daily'):
+        """
+        Calculate the expected window for the next cycle low based on the last low.
+        Returns tuple of (earliest_date, latest_date, normal_earliest, normal_latest)
+        """
+        if timeframe == 'daily':
+            min_days, max_days = self.cycle_params[self.asset_type]['daily']
+            expected_length = (min_days + max_days) / 2
+            normal_variance = expected_length * 0.15  # 15% variance for normal cases
+            extended_variance = expected_length * 0.30  # 30% variance for exceptional cases
+        else:
+            min_weeks, max_weeks = self.cycle_params[self.asset_type]['weekly']
+            expected_length = (min_weeks + max_weeks) / 2 * 7
+            normal_variance = expected_length * 0.15
+            extended_variance = expected_length * 0.30
+        
+        # Calculate normal window
+        normal_earliest = last_low_date + pd.Timedelta(days=int(expected_length - normal_variance))
+        normal_latest = last_low_date + pd.Timedelta(days=int(expected_length + normal_variance))
+        
+        # Calculate extended window
+        extended_earliest = last_low_date + pd.Timedelta(days=int(expected_length - extended_variance))
+        extended_latest = last_low_date + pd.Timedelta(days=int(expected_length + extended_variance))
+        
+        return (extended_earliest, extended_latest, normal_earliest, normal_latest)
+
     def plot_cycle_analysis(self, start_date=None, end_date=None):
         """
         Create a comprehensive visualization of the cycle analysis.
@@ -419,7 +550,7 @@ class BressartCycleIndicator:
         # Analyze and plot cycles
         analysis = self.analyze_cycles()
         
-        # Plot daily cycles
+        # Plot daily cycles and next low windows
         for cycle in analysis['daily']:
             start = cycle['start']
             end = cycle['end']
@@ -452,6 +583,33 @@ class BressartCycleIndicator:
             else:
                 ax1.text(plot_data.index[start], plot_data['Close'].max(),
                         cycle['translation'], rotation=45, color=color)
+            
+            # Calculate and plot next low window
+            if plot_data.index[start] < end_date:  # Only plot if the low is within our view
+                extended_earliest, extended_latest, normal_earliest, normal_latest = self.calculate_next_low_window(
+                    plot_data.index[start]
+                )
+                
+                # Plot extended window with light shading
+                if extended_earliest <= end_date:
+                    ax1.axvspan(extended_earliest, extended_latest,
+                              color='gray', alpha=0.1,
+                              label='Extended Window' if start == analysis['daily'][0]['start'] else "")
+                
+                # Plot normal window with darker shading
+                if normal_earliest <= end_date:
+                    ax1.axvspan(normal_earliest, normal_latest,
+                              color='gray', alpha=0.2,
+                              label='Normal Window' if start == analysis['daily'][0]['start'] else "")
+                
+                # Add text for window dates
+                y_pos = plot_data['Close'].min()
+                ax1.text(normal_earliest, y_pos,
+                        f'Window Start\n{normal_earliest.strftime("%Y-%m-%d")}',
+                        rotation=45, verticalalignment='top')
+                ax1.text(normal_latest, y_pos,
+                        f'Window End\n{normal_latest.strftime("%Y-%m-%d")}',
+                        rotation=45, verticalalignment='top')
         
         ax1.set_title(f'{self.asset_type} Cycle Analysis')
         ax1.set_ylabel('Price')
@@ -465,6 +623,30 @@ class BressartCycleIndicator:
         
         plt.tight_layout()
         plt.show()
+
+    def print_debug_info(self, start_date, end_date):
+        """Print detailed debug information for potential cycle lows in the specified date range."""
+        mask = (self.data.index >= start_date) & (self.data.index <= end_date)
+        data_slice = self.data[mask]
+        
+        for i in range(len(data_slice)):
+            idx = data_slice.index[i]
+            price = self.data['Close'].loc[idx]
+            rsi3m3 = self.calculate_rsi3m3(self.data['Close']).loc[idx]
+            signals = self.get_cycle_confirmation_signals(self.data.index.get_loc(idx))
+            
+            # Only print info for potential lows (RSI3M3 < 35 or price below 20MA)
+            if rsi3m3 < 35 or price < self.data['SMA20'].loc[idx]:
+                print(f"\nDate: {idx.strftime('%Y-%m-%d')}")
+                print(f"Price: ${price:.2f}")
+                print(f"RSI3M3: {rsi3m3:.1f}")
+                print(f"Below 20MA: {'Yes' if price < self.data['SMA20'].loc[idx] else 'No'}")
+                print(f"Below 50MA: {'Yes' if price < self.data['SMA50'].loc[idx] else 'No'}")
+                if 'Volume' in self.data.columns:
+                    vol_ratio = self.data['Volume'].loc[idx] / self.data['Volume'].loc[idx-5:idx].mean()
+                    print(f"Volume vs 5-day avg: {vol_ratio:.1f}x")
+                print(f"MACD Histogram: {self.data['MACD_Hist'].loc[idx]:.3f}")
+                print("-" * 40)
 
 def main():
     # Example usage
