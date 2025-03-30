@@ -41,7 +41,7 @@ A powerful market cycle analysis tool that helps traders and investors identify 
 
 ## Example
 
-![Bressart Cycle Indicator Tool Screenshot](docs/images/tool_screenshot.png)
+![Bressart Cycle Indicator Tool Screenshot](screenshot.png)
 
 The screenshot above demonstrates the tool's clean interface analyzing Bitcoin's daily cycles:
 
